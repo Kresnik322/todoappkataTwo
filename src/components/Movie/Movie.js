@@ -4,7 +4,7 @@ import { Rate } from "antd";
 import { format } from "date-fns";
 import { getColorByRating } from "../../util/helper";
 
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types";
 
 import vadim from "../../resources/Vadim.jpg";
 
@@ -12,7 +12,10 @@ import vadim from "../../resources/Vadim.jpg";
 import "./Movie.scss";
 
 class Movie extends React.Component {
-
+  static defaultProps = {
+    disabledRating: false,
+    onChangeUserRating: () => {},
+  };
 
   onChangeUserRating = (value) => {
     this.props.onChangeUserRating(this.props.id, value);
@@ -38,25 +41,30 @@ class Movie extends React.Component {
           <p className="movie-description__date">{format(released, "MMMM d, yyyy")}</p>
           <ul className="movie-description__genres">
             {genres.map((item, index) => (
-              <li className="btn btn-outline-secondary btn-sm" key = {index}>{item}</li>
+              <li className="btn btn-outline-secondary btn-sm" key={index}>
+                {item}
+              </li>
             ))}
           </ul>
           <ul className="movie-description__content">
             {platforms.map((item, index) => (
-              <li className="btn btn-outline-success btn-sm" key = {index}>{item}</li>
+              <li className="btn btn-outline-success btn-sm" key={index}>
+                {item}
+              </li>
             ))}
           </ul>
-          <Rate count={5} allowHalf={true} defaultValue={0} onChange={onChangeUserRating} value = {userRating} disabled = {disabledRating} />
+          <Rate
+            count={5}
+            allowHalf={true}
+            defaultValue={0}
+            onChange={onChangeUserRating}
+            value={userRating}
+            disabled={disabledRating}
+          />
         </div>
       </div>
     );
   }
 }
-
-
-Movie.defaultProps = {
-  disabledRating: false,
-}
-
 
 export default Movie;

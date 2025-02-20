@@ -12,7 +12,7 @@ class App extends React.Component {
   state = {
     queryValue: "",
     queryValueRatingItems: "",
-    updateComponent: false, 
+    updateComponent: false,
   };
 
   onInputChange = (queryValue) => {
@@ -34,14 +34,14 @@ class App extends React.Component {
 
   render() {
     const { queryValue, updateComponent, queryValueRatingItems } = this.state;
-
+    const { onInputChange, onInputChangeLocalStorage } = this;
     const items = [
       {
         label: "Search",
         key: "1",
         children: (
           <>
-            <SearchPanel onInputChange={this.onInputChange} />
+            <SearchPanel onInputChange={onInputChange} />
             <MovieList queryValue={queryValue} onUpdateComponent={this.onUpdateComponent} />
           </>
         ),
@@ -51,8 +51,8 @@ class App extends React.Component {
         key: "2",
         children: (
           <>
-            <SearchPanel onInputChange={this.onInputChangeLocalStorage} />
-            <UserRatingList queryValueRatingItems = {queryValueRatingItems} updateComponent={updateComponent} />
+            <SearchPanel onInputChange={onInputChangeLocalStorage} />
+            <UserRatingList queryValueRatingItems={queryValueRatingItems} updateComponent={updateComponent} />
           </>
         ),
       },

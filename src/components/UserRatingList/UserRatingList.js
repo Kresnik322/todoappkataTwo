@@ -56,18 +56,12 @@ class UserRatingList extends React.Component {
     this.onRequest(pageNumber);
   };
 
-  onChangeUserRating = (id, value) => {
-    const infoItem = this.localStorageRating.getItem(id);
-    infoItem.userRating = value;
-    this.localStorageRating.addItem(id, infoItem);
-  };
-
   render() {
     const { data, maxPages, page } = this.state;
-    const { onChangePage, onChangeUserRating } = this;
+    const { onChangePage } = this;
     return (
       <>
-        <PageInfo data={data} maxPages={maxPages} onChangeUserRating={onChangeUserRating} disabledRating={true} />
+        <PageInfo data={data} maxPages={maxPages} disabledRating={true} />
         <div className="pagination">
           <Pagination
             pageSize={PAGE_SIZE}

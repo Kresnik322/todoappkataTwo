@@ -6,6 +6,7 @@ const getColorByRating = (rating) => {
   return "#E90000";
 };
 
+// это для тестов, чтобы запросы лишние не делать
 const testData = [
   {
     id: 3498,
