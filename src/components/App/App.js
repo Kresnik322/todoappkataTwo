@@ -15,12 +15,8 @@ class App extends React.Component {
     updateComponent: false,
   };
 
-  onInputChange = (queryValue) => {
-    this.setState({ queryValue });
-  };
-
-  onInputChangeLocalStorage = (queryValueRatingItems) => {
-    this.setState({ queryValueRatingItems });
+  onInputChange = (value, name) => {
+    this.setState({ [name]: value });
   };
 
   // Я думал как заставить компонент UserRatingList обновляться после обновления localStorage, когда поставили оценку
@@ -41,7 +37,7 @@ class App extends React.Component {
         key: "1",
         children: (
           <>
-            <SearchPanel onInputChange={onInputChange} />
+            <SearchPanel onInputChange={onInputChange} name ='queryValue' />
             <MovieList queryValue={queryValue} onUpdateComponent={this.onUpdateComponent} />
           </>
         ),
@@ -51,7 +47,7 @@ class App extends React.Component {
         key: "2",
         children: (
           <>
-            <SearchPanel onInputChange={onInputChangeLocalStorage} />
+            <SearchPanel onInputChange={onInputChange} name ='queryValueRatingItems' />
             <UserRatingList queryValueRatingItems={queryValueRatingItems} updateComponent={updateComponent} />
           </>
         ),
